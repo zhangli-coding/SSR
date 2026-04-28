@@ -1,31 +1,16 @@
-# 🚀 SSR
-
-This is the Official implementation of  
-**[SIGIR 2026] SSR: Structured Subgraph Retrieval for Temporal Knowledge Graph Question Answering with LLMs**
-
----
-
-## 📖 Overview
+# 💎 SSR
 
 <p align="center">
-  <img src="figure/main.pdf" width="700"/>
+  <img src="figure/main.png" width="700"/>
 </p>
 
-Overview TODO.
+This is the official implementation of  
+**[SIGIR 2026] SSR: Structured Subgraph Retrieval for Temporal Knowledge Graph Question Answering with LLMs**
 
----
-
-## ⚙️ Setting Up
-
-```bash
-# TODO: Fill in environment setup instructions
-```
-
----
 
 ## 📊 Datasets
 
-The RTQA framework uses the MultiTQ and TimelineKGQA datasets for evaluation. Below are instructions to download these datasets:
+The SSR framework uses the MultiTQ and TimelineKGQA datasets for evaluation. Below are instructions to download these datasets:
 
 ### 📦 MultiTQ Dataset
 
@@ -51,16 +36,36 @@ cd Datasets
 
 **Note:** The TimelineKGQA dataset is generated based on ICEWS Actor and CronQuestions KG. We only use the CronQuestions KG part.
 
+
 ## 🧪 Evaluation
 
+### 1. Set environment variables
+
 ```bash
-# TODO: Fill in evaluation commands
+export OPENAI_API_KEY="your_key"
+export OPENAI_MODEL_NAME="gpt-4o-mini"
 ```
 
----
+### 2. Run SSR on MultiTQ
 
+```bash
+python run_pipeline.py \
+  --run-text-retrieval \
+  --run-graph-retrieval \
+  --run-graph-qa \
+  --kg-path ./datasets/MultiTQ/kg/full.txt \
+  --qa-path ./datasets/MultiTQ/questions/test.json \
+  --entity-path ./datasets/MultiTQ/kg/entity2id.json \
+  --relation-path ./datasets/MultiTQ/kg/relation2id.json \
+  --graph-pattern-prompt ./prompts/gp_prompt.txt \
+  --qa-prompt ./prompts/qa_prompt.txt \
+  --text-retriever-model-name /path/to/bge-m3
+```
+
+<!--
 ## 📌 Citation
 
 ```bibtex
-% TODO: Add BibTeX entry
+% todo
 ```
+-->
